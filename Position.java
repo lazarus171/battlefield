@@ -25,5 +25,18 @@ public class Position {
 	public String toString() {
 		return this.x+"-"+this.y;
 	}
+	
+	/* aggiunto per far funzionare PositionTest*/
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
+	
+	/* aggiunto per far funzionare PositionTest*/
+	public boolean equals(Object o) {
+		Position obj = (Position) o;
+		if(this.toString().equals(obj.toString()))
+			return true;
+		return false;
+	}
 
 }
