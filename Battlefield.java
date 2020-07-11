@@ -91,9 +91,14 @@ public class Battlefield {
 		return mappa;
 	}
 	
-	public List<?> getRobotOrdinatiPerPosizione() {
+	public List<Robot> getRobotOrdinatiPerPosizione() {
 		// (vedi DOMANDA 4)
-		return null;
+		List<Robot> lista = new LinkedList<Robot>();
+		lista.addAll(getAllChasers());
+		lista.addAll(getAllWalkers());
+		ComparaPosizione<Robot> c = new ComparaPosizione<Robot>();
+		Collections.sort(lista, c);
+		return lista;
 	}
 	
 	public SortedSet<?> getRobotOrdinatiPerLongevita() {
