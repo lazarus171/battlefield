@@ -18,24 +18,24 @@ public class Chaser extends Robot {
 	}
 	
 	public Position decidiMossa(Battlefield field) {
-		Walker inseguito = cercaAvversario(field);
+		Robot inseguito = cercaAvversario(field);
 		if (inseguito==null) 
 			return null; /* nessuno da inseguire: stai fermo */
 		else return inseguito.getPosizione();
 	}
 
-	private Walker cercaAvversario(Battlefield field) {
+	private Robot cercaAvversario(Battlefield field) {
 		for(Position p : field.adiacenti(this.getPosizione())) {
 			Robot vicino = field.getRobot(p);
 			if (isAvversario(vicino)) {
-				return (Walker) vicino;
+				return vicino;
 			}
 		}
 		return null;
 	}
 
 	private boolean isAvversario(Object avvistato) {
-		return (avvistato.getClass() == Walker.class); /* è sicuramente un Walker??? per ora SI! */
+		return true; /* è sicuramente un Walker??? per ora SI! */
 	}
 
 }
