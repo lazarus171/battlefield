@@ -13,41 +13,63 @@ public class Battlefield {
 	private int dim;
 
 	private Random random;
-	
-	private Map<Position, Walker> posizione2walker;
-	private Map<Position, Chaser> posizione2chaser;
+	//Domanda 2
+	//private Map<Position, Walker> posizione2walker;
+	//private Map<Position, Chaser> posizione2chaser;
+	private Map<Position, Robot> posizione2robot;
 
 	public Battlefield(int dimensione) {
 		this.dim = dimensione;
-		this.posizione2walker = new HashMap<>();
-		this.posizione2chaser = new HashMap<>();
+		//this.posizione2walker = new HashMap<>();
+		//this.posizione2chaser = new HashMap<>();
+		this.posizione2robot = new HashMap<>();
 		this.random = new Random();
 	}
 
 	public void addWalker(Walker w) {
 		// (vedi DOMANDA 1)
-		this.posizione2walker.put(w.getPosizione(), w);
+		//this.posizione2walker.put(w.getPosizione(), w);
+		//Domanda 2
+		this.posizione2robot.put(w.getPosizione(), w);
 	}
 
 	public void addChaser(Chaser c) {
 		// (vedi DOMANDA 1)
-		this.posizione2chaser.put(c.getPosizione(), c);
+		//this.posizione2chaser.put(c.getPosizione(), c);
+		//Domanda 2
+		this.posizione2robot.put(c.getPosizione(), c);
 	}
-
+	
+	//Domanda 2
+	/*
 	public Walker getWalker(Position p) {
 		return posizione2walker.get(p);
 	}
 
 	public Chaser getChaser(Position p) {
 		return posizione2chaser.get(p);
+	}*/
+	
+	public Robot getRobot(Position p) {
+		return posizione2robot.get(p);
 	}
 
 	public Collection<Walker> getAllWalkers() {
-		return this.posizione2walker.values();
+		List<Walker> allWalkers = new LinkedList<Walker>();
+		for(Robot r : this.posizione2robot.values()) {
+			if(r.getClass().equals(Walker.class))
+				allWalkers.add((Walker)r);
+		}
+		return allWalkers;
 	}
 
 	public Collection<Chaser> getAllChasers() {
-		return this.posizione2chaser.values();
+		List<Chaser> allChasers = new LinkedList<Chaser>();
+		for(Robot r : this.posizione2robot.values()) {
+			if(r.getClass().equals(Chaser.class))
+				allChasers.add((Chaser)r);
+		}
+		return allChasers;
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -100,7 +122,7 @@ public class Battlefield {
 	}
 
 	public boolean isLibera(Position posizione) {
-		return ( this.getWalker(posizione)==null && this.getChaser(posizione)==null);
+		return ( this.getRobot(posizione) == null);
 	}
 
 	public int getDimensione() {

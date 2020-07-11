@@ -1,30 +1,15 @@
 package battlefield;
 
+/*Modificata per rispondere alla domanda 2*/
+public class Walker extends Robot {
 
-public class Walker {
-
-	private Position posizione;
-	private int longevita;
-	
 	public Walker(Position p) {
-		this.posizione = p;
-		this.longevita = 0 ;
+		this.setPosizione(p);
+		this.setLongevita(0);
 	}
 
-	public Position getPosizione() {
-		return this.posizione;
-	}
-	
-	public int incrementaLongevita() {
-		return ++this.longevita;
-	}
-	
-	public int getLongevita() {
-		return this.longevita;
-	}
-	
 	public void passo(Battlefield field) {
-		Position nuova = this.decidiDoveAndare(field);
+		Position nuova = this.decidiMossa(field);
 		if (nuova!=null) {
 			Walker clone = new Walker(nuova);
 			field.addWalker(clone);
@@ -32,7 +17,7 @@ public class Walker {
 		this.incrementaLongevita();
 	}
 	
-	public Position decidiDoveAndare(Battlefield field) {
+	public Position decidiMossa(Battlefield field) {
 		Position corrente = this.getPosizione();
 		Position libera = field.posizioneLiberaVicino(corrente);
 		return libera; // verso una posizione libera

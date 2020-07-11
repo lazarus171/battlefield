@@ -1,25 +1,11 @@
 package battlefield;
 
-public class Chaser {
-
-	private Position posizione;
-	private int longevita;
+/*Modificata per rispondere alla domanda 2*/
+public class Chaser extends Robot {
 	
 	public Chaser(Position p) {
-		this.posizione = p;
-		this.longevita = 0 ;
-	}
-	
-	public Position getPosizione() {
-		return this.posizione;
-	}
-	
-	public int incrementaLongevita() {
-		return ++this.longevita;
-	}
-	
-	public int getLongevita() {
-		return this.longevita;
+		this.setPosizione(p);
+		this.setLongevita(0) ;
 	}
 	
 	public void passo(Battlefield field) {
@@ -40,16 +26,16 @@ public class Chaser {
 
 	private Walker cercaAvversario(Battlefield field) {
 		for(Position p : field.adiacenti(this.getPosizione())) {
-			Walker vicino = field.getWalker(p);
+			Robot vicino = field.getRobot(p);
 			if (isAvversario(vicino)) {
-				return vicino;
+				return (Walker) vicino;
 			}
 		}
 		return null;
 	}
 
 	private boolean isAvversario(Object avvistato) {
-		return true ; /* è sicuramente un Walker??? per ora SI! */
+		return (avvistato.getClass() == Walker.class); /* è sicuramente un Walker??? per ora SI! */
 	}
 
 }

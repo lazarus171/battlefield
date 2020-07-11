@@ -34,7 +34,7 @@ public class Position {
 	/* aggiunto per far funzionare PositionTest*/
 	public boolean equals(Object o) {
 		Position obj = (Position) o;
-		if(this.toString().equals(obj.toString()))
+		if(this.getX() == obj.getX() && this.getY() == obj.getY())
 			return true;
 		return false;
 	}
