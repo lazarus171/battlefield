@@ -29,7 +29,7 @@ public class RobotOrdinatiPerLongevitaTest {
 		this.unitari = new Position(1, 1);
 	}
 	
-	/* DA RIFATTORIZZARE dopo aver svolto la DOMANDA 2*/
+	/* DA RIFATTORIZZARE dopo aver svolto la DOMANDA 2
 	private void setLongevita(Walker w, int l) {
 		for(int i=0; i<l; i++)
 			w.incrementaLongevita();
@@ -37,6 +37,11 @@ public class RobotOrdinatiPerLongevitaTest {
 	private void setLongevita(Chaser c, int l) {
 		for(int i=0; i<l; i++)
 			c.incrementaLongevita();
+	}*/
+	/*Rifattorizzato dopo la domanda 2*/
+	private void setLongevita(Robot r, int l) {
+		for (int i = 0; i < l; i++)
+			r.incrementaLongevita();
 	}
 	
 	/* DA RIFATTORIZZARE dopo aver svolto la DOMANDA 2        */
@@ -51,7 +56,7 @@ public class RobotOrdinatiPerLongevitaTest {
 	@Test
 	public void testRobotOrdinatiPerLongevitaTest_stessaLongevitaTipoDiverso() {
 		this.field.addWalker(new Walker(origine)); // n.b. longevità 0;
-		this.field.addWalker(new Walker(unitari)); // n.b. longevità 0;
+		this.field.addChaser(new Chaser(unitari)); // n.b. longevità 0;
 		assertEquals(2, this.field.getRobotOrdinatiPerLongevita().size());
 	}
 
@@ -63,7 +68,7 @@ public class RobotOrdinatiPerLongevitaTest {
 		final Chaser vecchio = new Chaser(unitari);
 		setLongevita(vecchio, 100); // n.b. longevità 100;
 		this.field.addChaser(vecchio);
-		final SortedSet<?> perLongevita = this.field.getRobotOrdinatiPerLongevita();
+		final SortedSet<Robot> perLongevita = this.field.getRobotOrdinatiPerLongevita();
 		assertEquals(2, perLongevita.size());
 		assertSame(giovane, perLongevita.first());
 		assertSame(vecchio, perLongevita.last());

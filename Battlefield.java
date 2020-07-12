@@ -101,9 +101,12 @@ public class Battlefield {
 		return lista;
 	}
 	
-	public SortedSet<?> getRobotOrdinatiPerLongevita() {
+	public SortedSet<Robot> getRobotOrdinatiPerLongevita() {
 		// (vedi DOMANDA 6)
-		return null;
+		SortedSet <Robot> dalPiuGiovane = new TreeSet<Robot>();
+		dalPiuGiovane.addAll(this.getAllChasers());
+		dalPiuGiovane.addAll(this.getAllWalkers());
+		return dalPiuGiovane;
 	}
 	
 	public List<Position> adiacenti(Position perno) {

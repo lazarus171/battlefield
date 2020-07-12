@@ -1,7 +1,7 @@
 package battlefield;
 
 /*Creata per rispondere alla domanda 2*/
-public abstract class Robot {
+public abstract class Robot implements Comparable<Robot>{
 	
 	private Position posizione;
 	private int longevita;
@@ -35,6 +35,11 @@ public abstract class Robot {
 		this.longevita = l;
 	}
 	
-	
+	/*Serve per la comparazione "interna", senza aggiungere altre classi*/
+	public int compareTo(Robot o) {
+		if(this.getClass() == o.getClass())
+			return this.longevita - o.longevita;
+		return -1;
+	}
 
 }

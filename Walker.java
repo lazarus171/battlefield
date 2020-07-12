@@ -23,5 +23,6 @@ public class Walker extends Robot {
 		return libera; // verso una posizione libera
 					   // tutto occupato: fermo
 	}
+
 }
 
